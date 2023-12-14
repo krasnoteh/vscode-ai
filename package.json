@@ -1,0 +1,100 @@
+{
+  "name": "vs-code-ai",
+  "displayName": "VS Code AI",
+  "publisher": "krasnoteh",
+  "description": "Allows you to use 'GigaChat' AI language model to continue your code",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.84.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "icon": "logo.png",
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vs-code-ai.setprompt",
+        "title": "VS Code AI Set Prompt"
+      },
+      {
+        "command": "vs-code-ai.opensettings",
+        "title": "VS Code AI Settings"
+      },
+      {
+        "command": "vs-code-ai.generate_responce",
+        "title": "VS Code AI generate responce"
+      },
+      {
+        "command": "vs-code-ai.print_responce",
+        "title": "VS Code AI print one line"
+      }
+    ],
+    "configuration": {
+      "title": "VS Code AI configuration",
+      "properties": {
+        "VS Code AI configuration.authorization_data": {
+          "type": "string",
+          "default": "-- authorization data was not inserted --",
+          "description": "Enter GigaChat API authorization data"
+        },
+        "VS Code AI configuration.scope": {
+          "type": "string",
+          "default": "GIGACHAT_API_PERS",
+          "description": "Enter scope"
+        },
+        "VS Code AI configuration.initial_prompt": {
+          "type": "string",
+          "default": "Ты - помощник в написании кода. Тебе будет отправлено пояснение к коду, затаем сам код. Продолжи код. Не пиши ничего кроме продолжения кода!",
+          "description": "Enter initial prompt"
+        },
+        "VS Code AI configuration.max_tokens": {
+          "type": "integer",
+          "default": 128,
+          "description": "Enter token limit"
+        },
+        "VS Code AI configuration.max_lines": {
+          "type": "integer",
+          "default": 100,
+          "description": "Enter line restriction"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "vs-code-ai.print_responce",
+        "key": "alt+enter",
+        "mac": "alt+enter",
+        "linux": "alt+enter",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "vs-code-ai.generate_responce",
+        "key": "alt+g",
+        "mac": "alt+g",
+        "linux": "alt+g",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.3",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.84.0",
+    "@vscode/test-electron": "^2.3.6",
+    "eslint": "^8.52.0",
+    "glob": "^10.3.10",
+    "mocha": "^10.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "axios": "^1.6.2"
+  }
+}
